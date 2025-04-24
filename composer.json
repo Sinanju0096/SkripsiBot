@@ -1,0 +1,6 @@
+{
+    "require": {
+        "sastrawi/sastrawi": "^1.2",
+        "league/csv": "9.23.0"
+    }
+}
