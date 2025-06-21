@@ -1,6 +1,6 @@
 <?php 
 
-require "C:/Apache24/htdocs/GMBOT/vendor/autoload.php";
+require "C:/Apache24/htdocs/GMBOT/vendor/autoload.php"; //untuk memanggil library sastrawi menggunakan composer
 require 'Tfidf.php';
 require 'readdata.php';
 
@@ -11,9 +11,9 @@ function pre_process($str){
     $stopWordRemoverFactory = new \Sastrawi\StopWordRemover\StopWordRemoverFactory();
     $stopword = $stopWordRemoverFactory->createStopWordRemover();
 
-    $str = strtolower($str);
-    $str = $stemmer->stem($str);
-    $str = $stopword->remove($str);
+    $str = strtolower($str); //huruf kecil
+    $str = $stemmer->stem($str); //kata dasar 
+    $str = $stopword->remove($str); //tanda baca seperti . ; ? ; !
 
     return $str;
 }
@@ -27,9 +27,9 @@ function cosSimilarity($weight) {
     $normlast = 0;
     foreach($last as $w) {
         //echo "$w <br />";
-        $normlast = $normlast + $w * $w; 
+        $normlast = $normlast + $w * $w;  
     }
-    $normlast = sqrt($normlast); //echo 'norm Q:'.$normlast."<br>";
+    $normlast = sqrt($normlast); //echo 'norm Q:'.$normlast."<br>"; panjang vektor 
     foreach($weight as $ww) {
         if($i == $n) break;
     //for($i = 1; $i < $n; $i++) {
@@ -43,8 +43,8 @@ function cosSimilarity($weight) {
             $cossim[$i] = $cossim[$i] + $w * $last[$key];
             $normdoc = $normdoc + $w * $w;
         }
-        $normdoc = sqrt($normdoc);
-        $cossim[$i] = $cossim[$i] / ($normdoc * $normlast);
+        $normdoc = sqrt($normdoc); 
+        $cossim[$i] = $cossim[$i] / ($normdoc * $normlast); //cosine similarity = perkalian dot product/ panjang vektor masing-masing
         //foreach($ww as $w) {
             //$cossim[$i] = $cossim[$i] + $w * $weight[$n][$j];
             //echo "$w <br />";
@@ -61,8 +61,8 @@ $desc = array();
 $i = 1;
 foreach ($records as $record) {
     //do something here
-    $playstation[$i] = $record['judulgame'];
-    $desc[$i] = $record['sinopsis'];
+    $playstation[$i] = $record['pertanyaan'];
+    $desc[$i] = $record['jawaban'];
     //echo $record['topik'],'<br>';
     $i = $i + 1;
 }
@@ -90,8 +90,10 @@ $dp = cosSimilarity($w);
 // print '</pre>';
 
 $maxSim = max($dp);
-$maxKey = array_search($maxSim, $dp);
-if($maxSim > 0) echo $desc[$maxKey];
+$maxKey = array_search($maxSim, $dp); 
+//echo "TF-IDF = ", $dp[$maxKey] ;
+//if($maxSim > 0) echo $desc[$maxKey];// "TF-IDF = ", $dp[$maxKey] ; //aktifkan ketika demo. ini asli
+if($maxSim > 0.6) echo $desc[$maxKey]; //, "TF-IDF = ", $dp[$maxKey] ; //ambil deskripsi dengan similarity paling tinggi//
 else echo "Maaf, tidak ada jawaban untuk pertanyaan itu.
             Mohon untuk memberikan rincian yang lebih jelas untuk pertanyaan yang sebelumnya. 
             Thank you.";

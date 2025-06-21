@@ -23,6 +23,11 @@
       <div class="welcome-box">
         <h1>WELCOME TO GMBOT</h1>
         <p>Untuk semua pengguna PlayStation. Chat sekarang dengan GMBOT untuk belajar tentang game kamu🎮</p>
+
+         <h1 style="margin-top: 30px;">Info</h1>
+         <p><strong>Home:</strong> Halaman ini berisi perkenalan dan panduan penggunaan GMBOT.</p>
+         <p><strong>About:</strong> Menjelaskan latar belakang dan pembuatan GMBOT.</p>
+         <p><strong>Q&A:</strong> Tempat pengguna bisa bertanya melalui chatbot dan mendapatkan jawaban langsung.</p>
       </div>
     </div>
     <div class="side" style="background-color: red;">
@@ -30,4 +35,5 @@
     </div>
   </div>
 </body>
+
 </html>

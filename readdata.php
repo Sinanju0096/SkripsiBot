@@ -5,16 +5,16 @@ use League\Csv\Reader;
 use League\Csv\Statement;
 
 //load the CSV document from a stream
-$stream = fopen('gamedata.csv', 'r');
+$stream = fopen('pertanyaan.csv', 'r');
 $csv = Reader::createFromStream($stream);
 $csv->setDelimiter(';');
 $csv->setHeaderOffset(0);
 
 //build a statement
 $stmt = new Statement()
-    ->select('judulgame', 'sinopsis')
+    ->select('pertanyaan', 'jawaban')
     //->andWhere('firstname', 'starts with', 'A')
-    ->orderByAsc('judulgame');
+    ->orderByAsc('pertanyaan');
     //->offset(10)
     //->limit(25);
 

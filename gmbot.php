@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="typing-field">
-            <div class="input-data">
+            <div class="input-data" style = "text-align: justify;">
                 <input id="data" type="text" placeholder="Ketik disini..." required>
                 <button id="send-btn">Send</button>
             </div>
@@ -74,4 +74,5 @@
       <img src="img/shadow.png" alt="Shadow">
   </div>
 </body>
+
 </html>
